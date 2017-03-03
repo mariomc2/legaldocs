@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @template.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @template.description %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @template.price %>
+</p>
+
+<hr>
+
+<p>
+  <strong>Form:</strong>  
+ 	<%= form_for(:datos, :url => {:action => 'formdata'}) do |f| %>
+		<table>
+		<% @template.form.each_line do |line| %>			
+			<tr>
+				<th><%= f.label(line.strip) %></th>
+				<td><%= f.text_field(line.strip) %></td>
+			</tr>			
+		<% end %>
+		</table>
+
+		<%= submit_tag("Enviar") %>
+	<% end %>
+
+</p>
+
+<hr>
+
+<p>
+	<strong>Document:</strong>  
+	<%= raw @template.document %>
+</p>
+
+<%= link_to 'Edit', edit_template_path(@template) %> |
+<%= link_to 'Back', templates_path %>
